@@ -12,7 +12,7 @@
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="titulo">Create Card</h5>
+                    <h5 class="titulo">{{action}} Card</h5>
                     <form [formGroup]="form" (ngSubmit)="createCard()">
                         <div class="input-group input-group-lg mb-3">
                             <span class="input-group-text">
@@ -45,17 +45,17 @@
                             <div class="col-lg-5">
                                 <div class="input-group input-group-lg mb-3">
                                     <span class="input-group-text">
-                                        <i class="fas fa-key" [class.green-icon]="this.form.get('ccv')?.valid"
-                                            [class.red-icon]="this.form.get('ccv')?.invalid && this.form.get('ccv')?.touched"></i>
+                                        <i class="fas fa-key" [class.green-icon]="this.form.get('cvv')?.valid"
+                                            [class.red-icon]="this.form.get('cvv')?.invalid && this.form.get('cvv')?.touched"></i>
                                     </span>
-                                    <input formControlName="ccv" maxlength="3" type="password" class="form-control"
-                                        placeholder="CV">
+                                    <input formControlName="cvv" maxlength="3" type="password" class="form-control"
+                                        placeholder="CVV">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <button [disabled]="this.form.invalid   " class="btn btn-success btn-lg btn-block"
-                                type="submit"><i class="fas fa-database mr-2"></i>Create Card</button>
+                                type="submit"><i class="fas fa-database mr-2"></i>Save</button>
                         </div>
                     </form>
                 </div>
@@ -72,8 +72,8 @@
                                 <td>{{card.cardNumber}}</td>
                                 <td>{{card.expirationDate}}</td>
                                 <td>{{card.cvv}}</td>
-                                <td><i  class="far fa-edit text-info"></i></td>
-                                <td><i class="far fa-trash-alt text-danger" (click)="deleteCard(i)"></i></td>
+                                <td><i class="far fa-edit text-info" (click)="updateCard(card)"></i></td>
+                                <td><i class="far fa-trash-alt text-danger" (click)="deleteCard(card.id)"></i></td>
                             </tr>
                         </tbody>
                     </table>

@@ -17,6 +17,6 @@ namespace BackEnd.Models
         [Required]
         public String ExpirationDate { get; set; }
         [Required]
-        public String CCV { get; set; }
+        public String CVV { get; set; }
     }
 }

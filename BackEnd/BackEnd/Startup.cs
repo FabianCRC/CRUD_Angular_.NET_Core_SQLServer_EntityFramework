@@ -35,6 +35,9 @@ namespace BackEnd
             });
             services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DevConection")));
+            //Para permitir conexiones 
+            services.AddCors(options => options.AddPolicy("AllowWebApp",
+                   builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +49,7 @@ namespace BackEnd
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BackEnd v1"));
             }
-
+            app.UseCors("AllowWebApp");
             app.UseHttpsRedirection();
 
             app.UseRouting();
